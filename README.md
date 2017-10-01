@@ -75,4 +75,5 @@ This also means that elements that rely on direct parent-child relationships may
 Polymer / HTML slotted content does not work at the moment because of how opinionated React is about DOM management. One approach is to let React render the dom in a sibling element and move it once rendering is complete. However, with `ShadyDom` it's unclear how to properly add and remove slotted elements dynamically.
 
 **Workaround**
+
 If slotted elements are required for the behavior of the element then a wrapper Polymer element can be used to take an object as input and manage the dynamic children internally.
