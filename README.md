@@ -2,6 +2,12 @@
 
 A generic `React.Component` for wrapping Polymer Elements and binding events and property data between them.
 
+## Installation
+The repo is provided on npm [here](https://www.npmjs.com/package/@gkjohnson/react-polymer-component)
+```
+npm install @gkjohnson/react-polymer-component
+```
+
 ## Use
 ### Wrapping an Element
 
