@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "serve": "static-server",
     "build": "webpack"
   },
   "repository": {
@@ -23,6 +24,7 @@
     "babel-preset-react": "^6.24.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "static-server": "^2.0.5",
     "webpack": "^3.6.0"
   },
   "dependencies": {
