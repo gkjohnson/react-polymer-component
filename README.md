@@ -56,9 +56,6 @@ Event binding using the existing Polymer convention of prefixing event binding w
 
 The styles passed to the element are applied to the Polymer element directly. However, because a `div` wrapper is required, the `display` properties of the style are also applied to that.
 
-### Slotted Content
-TBD
-
 ## Caveats
 
 ### Div Container
