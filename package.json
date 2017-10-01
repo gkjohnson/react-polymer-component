@@ -1,5 +1,5 @@
 {
-  "name": "react-with-polymer",
+  "name": "@gkjohnson/react-polymer-component",
   "version": "0.0.1",
   "description": "",
   "main": "PolymerComponent.js",
