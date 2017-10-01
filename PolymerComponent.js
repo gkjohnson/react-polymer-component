@@ -16,7 +16,7 @@ class PolymerComponent extends React.Component {
         return class extends PolymerComponent {
             constructor(props) {
                 super(props)
-                this.defaultStyles = styles
+                this.defaultStyles = styles || null
             }
 
             _getTag() {
@@ -45,7 +45,7 @@ class PolymerComponent extends React.Component {
         this.originalProps = null
 
         // default styles
-        this.defaultStyles = {}
+        this.defaultStyles = null
     }
 
     componentDidMount() {
@@ -58,11 +58,12 @@ class PolymerComponent extends React.Component {
     }
 
     render () {
+        console.log(this.props.children)
 
         this._prepElement(this._getTag())
         this._updateElementProperties(this.props)
 
-        const style = Object.assign({}, this.defaultStyles, this.prop.styles)
+        const style = Object.assign({}, this.defaultStyles, this.props.styles)
         return <div
             ref={ el => this.container=el }
             style={ style }

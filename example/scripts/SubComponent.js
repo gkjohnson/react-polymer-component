@@ -11,8 +11,8 @@ class SubComponent extends React.Component {
                 on-click={ e => console.log('Polymer Click Event') }
                 on-my-event={ e => console.log('Custom Polymer Event') }
             >
+                <div>internal content</div>
                 {this.props.props.text}
-                <div>THING</div>
             </my-polymer-element>
             
             <h1>Wrapped Polymer Element</h1>
@@ -21,8 +21,8 @@ class SubComponent extends React.Component {
                 on-click={ e => console.log('Polymer Click Event') }
                 on-my-event={ e => console.log('Custom Polymer Event') }
             >
+                <div>internal content</div>
                 {this.props.props.text}
-                <div>THING</div>
             </MyPolymerElement>
         </div>
     }

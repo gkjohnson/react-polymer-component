@@ -6,12 +6,10 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = { items: [{ value: 100 }], text: 'hello!' }
-
-        window.setState = state => this.setState(state)
     }
 
     updateList() {
-        const count = Math.floor(Math.random() * 10)
+        const count = Math.ceil(Math.random() * 10)
         const items = []
 
         for(let i = 0; i < count; i++) {
