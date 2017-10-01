@@ -13,7 +13,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log("RENERING")
         return <div>
                 <h1>Hello</h1>
                 <SubComponent props={this.state}></SubComponent>

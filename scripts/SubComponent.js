@@ -1,4 +1,5 @@
 const React = require('react')
+const PolymerComponent = require('./PolymerComponent')
 
 class SubComponent extends React.Component {
 
@@ -7,10 +8,16 @@ class SubComponent extends React.Component {
     }
 
     render() {
-        console.log("RENDERING", this, this.props)
         return <div>
             <div>HELLO! My Innards</div>
-            <my-polymer-element>{this.props.props.text}</my-polymer-element>
+            <my-polymer-element items={ this.props.props.items }>{this.props.props.text}</my-polymer-element>
+            <PolymerComponent
+                element-tag="my-polymer-element"
+                items={ this.props.props.items }
+            >
+                {this.props.props.text}
+                <div>THING</div>
+            </PolymerComponent>
         </div>
     }
 }
