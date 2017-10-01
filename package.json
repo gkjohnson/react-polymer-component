@@ -1,16 +1,29 @@
 {
   "name": "@gkjohnson/react-polymer-component",
   "version": "0.0.1",
-  "description": "",
+  "description": "A generic React.Component for wrapping Polymer Elements and binding events and property data between them",
   "main": "PolymerComponent.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gkjohnson/react-with-polymer.git"
+    "url": "git+https://github.com/gkjohnson/react-polymer-component.git"
   },
+  "keywords": [
+    "react",
+    "polymer",
+    "app",
+    "javascript",
+    "html",
+    "web",
+    "vdom",
+    "webcomponents"
+  ],
   "author": "Garrett Johnson <garrett.kjohnson@gmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gkjohnson/react-with-polymer/issues"
+    "url": "https://github.com/gkjohnson/react-polymer-component/issues"
   },
-  "homepage": "https://github.com/gkjohnson/react-with-polymer#readme"
+  "homepage": "https://github.com/gkjohnson/react-polymer-component#readme"
 }
