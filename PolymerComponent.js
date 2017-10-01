@@ -12,16 +12,9 @@ class PolymerComponent extends React.Component {
     // Returns a version of the class that is bound
     // to a specific tag so it doesn't need to
     // be provided through the 'element-tag'
-    static bind(tag, styles) {
+    static bind(tag) {
         return class extends PolymerComponent {
-            constructor(props) {
-                super(props)
-                this.defaultStyles = styles || null
-            }
-
-            _getTag() {
-                return tag
-            }
+            _getTag() { return tag }
         }
     }
 
@@ -43,9 +36,6 @@ class PolymerComponent extends React.Component {
         // the original values of all the properties for the
         // element
         this.originalProps = null
-
-        // default styles
-        this.defaultStyles = null
     }
 
     componentDidMount() {
@@ -58,15 +48,14 @@ class PolymerComponent extends React.Component {
     }
 
     render () {
-        console.log(this.props.children)
-
         this._prepElement(this._getTag())
         this._updateElementProperties(this.props)
 
-        const style = Object.assign({}, this.defaultStyles, this.props.styles)
+        const wrapperStyle = {}
+        if (this.props.style && 'display' in this.props.style) wrapperStyle.display = this.props.style.display
         return <div
             ref={ el => this.container=el }
-            style={ style }
+            style={ wrapperStyle }
         ></div>
     }
 
@@ -122,6 +111,13 @@ class PolymerComponent extends React.Component {
                 delete this.events[key]
             }
         }
+
+        // styles
+        let style = ''
+        for (let key in newProps.style) {
+            style += `${key}:${newProps.style[key]};`
+        }
+        this.element.setAttribute('style', style)
     }
 }
 
