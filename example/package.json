@@ -4,7 +4,7 @@
     "build": "webpack"
   },
   "devDependencies": {
-    "react-polymer-component": "file:./../",
+    "@gkjohnson/react-polymer-component": "file:./../",
     "@polymer/polymer": "^2.1.1",
     "@webcomponents/webcomponentsjs": "^1.0.14",
     "babel-core": "^6.26.0",
