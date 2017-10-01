@@ -1,6 +1,23 @@
 const React = require('react')
 
+// PolymerComponent
+// React Component for wrapping and using polymer elements
+// within a React application
+
+// Props
+// element-tag:         the element tag to instantiate
+// on-<event-name>:     register for events thrown by the polymer element
+// <polymer property:   bind the data to the same polymer property
 class PolymerComponent extends React.Component {
+    // Returns a version of the class that is bound
+    // to a specific tag so it doesn't need to
+    // be provided through the 'element-tag'
+    static bind(tag) {
+        return class extends PolymerComponent {
+            _getTag() { return tag }
+        }
+    }
+
     /* Lifecycle Functions */
     constructor(props) {
         super(props)
@@ -32,7 +49,7 @@ class PolymerComponent extends React.Component {
 
     render () {
 
-        this._prepElement(this.props['element-tag'])
+        this._prepElement(this._getTag())
         this._updateElementProperties(this.props)
 
         const style = Object.assign(this.props.style || {}, { display: 'inline-block' })
@@ -45,6 +62,10 @@ class PolymerComponent extends React.Component {
     }
 
     /* Private Functions */
+    _getTag() {
+        return this.props['element-tag']
+    }
+
     // Prepare the polymer element and helper objects for
     // being registered to the page
     _prepElement(tag) {
