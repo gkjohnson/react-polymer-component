@@ -1,0 +1,15 @@
+<dom-module id="my-polymer-element">
+    <template>
+        
+        TEST
+
+    </template>
+</dom-module>
+
+<script type="text/javascript">
+    class MyPolymerElement extends Polymer.Element {
+        static get is() { return 'my-polymer-element' }
+    }
+
+    customElements.define(MyPolymerElement.is, MyPolymerElement)
+</script>
