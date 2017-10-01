@@ -7,15 +7,26 @@ class App extends React.Component {
         super(props)
         this.state = { items: [{ value: 100 }], text: 'hello!' }
 
-        window.setState = state => {
-            this.setState(state)
+        window.setState = state => this.setState(state)
+    }
+
+    updateList() {
+        const count = Math.floor(Math.random() * 10)
+        const items = []
+
+        for(let i = 0; i < count; i++) {
+            items.push({
+                value: Math.random() * 10
+            })
         }
+
+        this.setState({ items, text: 'text ' + Math.random() })
     }
 
     render() {
         return <div>
-                <h1>Hello</h1>
-                <SubComponent props={this.state}></SubComponent>
+                <SubComponent props={ this.state }></SubComponent>
+                <button onClick={ e => this.updateList() }>Update List</button>
             </div>
     }
 }

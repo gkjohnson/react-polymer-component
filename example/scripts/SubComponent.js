@@ -9,7 +9,7 @@ class SubComponent extends React.Component {
             <my-polymer-element
                 items={ this.props.props.items }
                 on-click={ e => console.log('Polymer Click Event') }
-                on-my-event={ e => console.log('Customy Polymer Event') }
+                on-my-event={ e => console.log('Custom Polymer Event') }
             >
                 {this.props.props.text}
                 <div>THING</div>
@@ -19,7 +19,7 @@ class SubComponent extends React.Component {
             <MyPolymerElement
                 items={ this.props.props.items }
                 on-click={ e => console.log('Polymer Click Event') }
-                on-my-event={ e => console.log('Customy Polymer Event') }
+                on-my-event={ e => console.log('Custom Polymer Event') }
             >
                 {this.props.props.text}
                 <div>THING</div>

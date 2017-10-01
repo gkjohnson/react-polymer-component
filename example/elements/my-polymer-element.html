@@ -1,17 +1,26 @@
 <dom-module id="my-polymer-element">
     <template>
-        
-        <h3>Slotted Content</h3>
-        <div>
-            <slot></slot>
-        </div>
+        <style>
+            #container {
+                background: #eee;
+                padding: 10px;
+                border-radius: 2px;
+            }
+        </style>
 
-        <h3>List</h3>
-        <ul>
-            <template is="dom-repeat" items="[[items]]">
-                <li on-click="_onClickHandler">[[item.value]]</li>
-            </template>
-        </ul>
+        <div id="container">        
+            <div>Slotted Content:</div>
+            <div>
+                <slot></slot>
+            </div>
+
+            <div>Repeated Content:</div>
+            <ul>
+                <template is="dom-repeat" items="[[items]]">
+                    <li on-click="_onClickHandler">[[item.value]]</li>
+                </template>
+            </ul>
+        </div>
     </template>
 </dom-module>
 

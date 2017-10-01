@@ -12,9 +12,16 @@ class PolymerComponent extends React.Component {
     // Returns a version of the class that is bound
     // to a specific tag so it doesn't need to
     // be provided through the 'element-tag'
-    static bind(tag) {
+    static bind(tag, styles) {
         return class extends PolymerComponent {
-            _getTag() { return tag }
+            constructor(props) {
+                super(props)
+                this.defaultStyles = styles
+            }
+
+            _getTag() {
+                return tag
+            }
         }
     }
 
@@ -36,6 +43,9 @@ class PolymerComponent extends React.Component {
         // the original values of all the properties for the
         // element
         this.originalProps = null
+
+        // default styles
+        this.defaultStyles = {}
     }
 
     componentDidMount() {
@@ -52,13 +62,11 @@ class PolymerComponent extends React.Component {
         this._prepElement(this._getTag())
         this._updateElementProperties(this.props)
 
-        const style = Object.assign(this.props.style || {}, { display: 'inline-block' })
+        const style = Object.assign({}, this.defaultStyles, this.prop.styles)
         return <div
             ref={ el => this.container=el }
             style={ style }
-        >
-            <h1>ITS HERE</h1>
-        </div>
+        ></div>
     }
 
     /* Private Functions */
@@ -70,7 +78,7 @@ class PolymerComponent extends React.Component {
     // being registered to the page
     _prepElement(tag) {
         // If the tag is different, then clear the element out
-        if (this.element && this.element.tagName.toLowerCase() !== tag.toLowerCase()) {
+        if (this.element && this.element.tagName.toLowerCase() !== tag.toLowerCase()) { 
             this.element.remove()
             this.element = null
             this.class = null
