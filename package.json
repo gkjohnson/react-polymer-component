@@ -3,30 +3,14 @@
   "version": "0.0.1",
   "description": "",
   "main": "PolymerComponent.js",
-  "scripts": {
-    "serve": "static-server",
-    "build": "webpack"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gkjohnson/react-with-polymer.git"
   },
-  "author": "",
+  "author": "Garrett Johnson <garrett.kjohnson@gmail.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/gkjohnson/react-with-polymer/issues"
   },
-  "homepage": "https://github.com/gkjohnson/react-with-polymer#readme",
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "static-server": "^2.0.5",
-    "webpack": "^3.6.0",
-    "@polymer/polymer": "^2.1.1",
-    "@webcomponents/webcomponentsjs": "^1.0.14"
-  }
+  "homepage": "https://github.com/gkjohnson/react-with-polymer#readme"
 }
