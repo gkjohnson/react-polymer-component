@@ -9,7 +9,7 @@
         <h3>List</h3>
         <ul>
             <template is="dom-repeat" items="[[items]]">
-                <li>[[item.value]]</li>
+                <li on-click="_onClickHandler">[[item.value]]</li>
             </template>
         </ul>
     </template>
@@ -26,6 +26,10 @@
                     value: () => [{ value: 1 }, { value: 2 }, { value: 4 }]
                 }
             }
+        }
+
+        _onClickHandler(e) {
+            this.dispatchEvent(new CustomEvent('my-event'))
         }
 
         _attachDom(dom) { this.appendChild(dom) }

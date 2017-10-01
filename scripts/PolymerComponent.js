@@ -1,16 +1,29 @@
 const React = require('react')
 
 class PolymerComponent extends React.Component {
+    /* Lifecycle Functions */
     constructor(props) {
         super(props)
+
+        // the polymer element to display
+        this.element = null
+
+        // the class representing the polymer element if it
+        // exists. We use this to inspect the properties
+        this.class = null
+
+        // the events that have been requested to be
+        // registered to
+        this.events = null
+        
+        // the original values of all the properties for the
+        // element
+        this.originalProps = null
     }
 
     componentDidMount() {
-        console.log('did MOUNT', this.element, this.props)
-        // this.prepElement(this.props['element-tag'])
         this.container.appendChild(this.element)
-
-
+        this.container.setAttribute('polymer-wrapper', this.element.tagName.toLowerCase())
     }
 
     componentWillUnmount() {
@@ -19,10 +32,10 @@ class PolymerComponent extends React.Component {
 
     render () {
 
-        this.prepElement(this.props['element-tag'])
-        this.updateElementProperties(this.props)
+        this._prepElement(this.props['element-tag'])
+        this._updateElementProperties(this.props)
 
-        const style=Object.assign(this.props.style || {}, { display: 'inline-block' })
+        const style = Object.assign(this.props.style || {}, { display: 'inline-block' })
         return <div
             ref={ el => this.container=el }
             style={ style }
@@ -31,28 +44,54 @@ class PolymerComponent extends React.Component {
         </div>
     }
 
-    prepElement(type) {
-        if (this.element && this.element.tagName.toLowerCase() !== type.toLowerCase()) {
+    /* Private Functions */
+    // Prepare the polymer element and helper objects for
+    // being registered to the page
+    _prepElement(tag) {
+        // If the tag is different, then clear the element out
+        if (this.element && this.element.tagName.toLowerCase() !== tag.toLowerCase()) {
             this.element.remove()
             this.element = null
             this.class = null
+            this.events = null
+            this.originalProps = null
         }
 
+        // If there's no element, then create it
         if (!this.element) {
-            this.element = document.createElement(type)
-            this.class = customElements.get(type)
+            this.element = document.createElement(tag)           
+            this.events = {}
+            
+            const cl = customElements.get(tag)
+            const properties = cl ? cl.properties : null
+            this.originalProps = {}
+            for(let key in properties) this.originalProps[key] = this.element[key]
         }
     }
 
-    updateElementProperties(props) {
+    _updateElementProperties() {
         const el = this.element
-        const cl = this.class
-        for (let key in props) {
-            if (key in cl.properties) {
-                el.set(key, props[key])
+        const newProps = Object.assign({}, this.originalProps, this.props)
+        for (let key in newProps) {
+            // update the property value if it exists in the property object
+            if (key in this.originalProps) el.set(key, this.props[key])
+
+            // register events based on the "on-" attribute keywords
+            if (/^on-/.test(key)) {
+                if (!(key in this.events)) {
+                    this.events[key] = e => this.props[key](e)
+                    this.element.addEventListener(key.replace(/^on-/, ''), this.events[key])
+                }
             }
         }
 
+        // cull events
+        for (let key in this.events) {
+            if (!(key in this.props)) {
+                this.element.removeEventListener(key.replace(/^on-/, ''), this.events[key])
+                delete this.events[key]
+            }
+        }
     }
 }
 

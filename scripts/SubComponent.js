@@ -14,6 +14,8 @@ class SubComponent extends React.Component {
             <PolymerComponent
                 element-tag="my-polymer-element"
                 items={ this.props.props.items }
+                on-click={ e => console.log("CLICKED") }
+                on-my-event={ e => console.log("MY EVENT") }
             >
                 {this.props.props.text}
                 <div>THING</div>
