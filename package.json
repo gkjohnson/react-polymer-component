@@ -1,8 +1,8 @@
 {
   "name": "react-with-polymer",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "PolymerComponent.js",
   "scripts": {
     "serve": "static-server",
     "build": "webpack"
@@ -25,9 +25,7 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "static-server": "^2.0.5",
-    "webpack": "^3.6.0"
-  },
-  "dependencies": {
+    "webpack": "^3.6.0",
     "@polymer/polymer": "^2.1.1",
     "@webcomponents/webcomponentsjs": "^1.0.14"
   }

@@ -1,5 +1,5 @@
 const React = require('react')
-const PolymerComponent = require('./PolymerComponent')
+const PolymerComponent = require('../PolymerComponent')
 
 class SubComponent extends React.Component {
 
