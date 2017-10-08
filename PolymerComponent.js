@@ -1,4 +1,5 @@
 const React = require('react')
+const ReactDOM = require('react-dom')
 
 // PolymerComponent
 // React Component for wrapping and using polymer elements
@@ -18,16 +19,12 @@ class PolymerComponent extends React.Component {
         }
     }
 
+    get tag() { return this._getTag() }
+    get element() { return this.refs.element }
+
     /* Lifecycle Functions */
     constructor(props) {
         super(props)
-
-        // the polymer element to display
-        this.element = null
-
-        // the class representing the polymer element if it
-        // exists. We use this to inspect the properties
-        this.class = null
 
         // the events that have been requested to be
         // registered to
@@ -38,67 +35,63 @@ class PolymerComponent extends React.Component {
         this.originalProps = null
     }
 
-    componentDidMount() {
-        this.container.appendChild(this.element)
-        this.container.setAttribute('polymer-wrapper', this.element.tagName.toLowerCase())
-    }
-
-    componentWillUnmount() {
-        this.element.remove()
+    shouldComponentUpdate(newProps) {
+        const tag = newProps['element-tag'] || this.tag
+        const hasNewTag = tag.toLowerCase() !== this.tag.toLowerCase()
+        if (!hasNewTag) this._updateElementProperties(newProps)
+        return hasNewTag
     }
 
     render () {
-        this._prepElement(this._getTag())
-        this._updateElementProperties(this.props)
+        return React.createElement(this.tag, { ref: 'element' })
+    }
 
-        const wrapperStyle = {}
-        if (this.props.style && 'display' in this.props.style) wrapperStyle.display = this.props.style.display
-        return <div
-            ref={ el => this.container=el }
-            style={ wrapperStyle }
-        ></div>
+    componentDidUpdate() {
+        this._updateDefaults()
+        this._updateElementProperties(this.props)
+    }
+
+    componentDidMount() {
+        this._updateDefaults()
+        this._updateElementProperties(this.props)
     }
 
     /* Private Functions */
-    _getTag() {
-        return this.props['element-tag']
-    }
+    _getTag() { return this.props['element-tag'] }
 
     // Prepare the polymer element and helper objects for
     // being registered to the page
-    _prepElement(tag) {
-        // If the tag is different, then clear the element out
-        if (this.element && this.element.tagName.toLowerCase() !== tag.toLowerCase()) { 
-            this.element.remove()
-            this.element = null
-            this.class = null
-            this.events = null
-            this.originalProps = null
-        }
-
-        // If there's no element, then create it
-        if (!this.element) {
-            this.element = document.createElement(tag)           
-            this.events = {}
-            
-            const cl = customElements.get(tag)
-            const properties = cl ? cl.properties : null
-            this.originalProps = {}
-            for(let key in properties) this.originalProps[key] = this.element[key]
-        }
+    _updateDefaults() {
+        this.events = {}
+        
+        const cl = customElements.get(this.tag)
+        const properties = cl ? cl.properties : null
+        this.originalProps = {}
+        for(let key in properties) this.originalProps[key] = this.element[key]
     }
 
-    _updateElementProperties() {
+    _updateElementProperties(props) {
+        const removeEvent = key => {
+            this.element.removeEventListener(key.replace(/^on-/, ''), this.events[key])
+            delete this.events[key]
+        }
+
         const el = this.element
-        const newProps = Object.assign({}, this.originalProps, this.props)
+        const newProps = Object.assign({}, this.originalProps, props)
         for (let key in newProps) {
+            const val = props[key]
+
             // update the property value if it exists in the property object
-            if (key in this.originalProps) el.set(key, this.props[key])
+            // only if it's changed
+            if (key in this.originalProps && el.get(key) !== val) el.set(key, val)
 
             // register events based on the "on-" attribute keywords
             if (/^on-/.test(key)) {
+                // remove the event if it's different
+                if (key in this.events && this.events[key] !== val) removeEvent(key)
+
                 if (!(key in this.events)) {
-                    this.events[key] = e => this.props[key](e)
+                    this.events[key] = e => props[key](e)
                     this.element.addEventListener(key.replace(/^on-/, ''), this.events[key])
                 }
             }
@@ -106,10 +99,7 @@ class PolymerComponent extends React.Component {
 
         // cull events
         for (let key in this.events) {
-            if (!(key in this.props)) {
-                this.element.removeEventListener(key.replace(/^on-/, ''), this.events[key])
-                delete this.events[key]
-            }
+            if (!(key in this.props)) removeEvent(key)
         }
 
         // styles
