@@ -54,21 +54,9 @@ Event binding using the existing Polymer convention of prefixing event binding w
 
 ### Styling
 
-The styles passed to the element are applied to the Polymer element directly. However, because a `div` wrapper is required, the `display` properties of the style are also applied to that.
+The styles passed to the element are applied to the Polymer element directly.
 
 ## Caveats
-
-### Div Container
-
-Because of how React works, a `div` container for the Polymer element is needed so the Polymer element can be properly manage. This means that styles may not work exactly as expected. The built out DOM looks like this:
-
-```html
-<div element-tag="my-polymer-element" style="...">
-  <my-polymer-element style="..."></my-polymer-element>
-</div>
-```
-
-This also means that elements that rely on direct parent-child relationships may not work properly.
 
 ### Slotted Content
 
