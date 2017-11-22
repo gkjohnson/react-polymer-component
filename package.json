@@ -1,5 +1,5 @@
 {
-  "name": "@gkjohnson/react-polymer-component",
+  "name": "react-polymer-component",
   "version": "0.0.2",
   "description": "A generic React.Component for wrapping Polymer Elements and binding events and property data between them",
   "main": "PolymerComponent.js",
@@ -21,7 +21,7 @@
     "webcomponents"
   ],
   "author": "Garrett Johnson <garrett.kjohnson@gmail.com",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/gkjohnson/react-polymer-component/issues"
   },
