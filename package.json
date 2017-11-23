@@ -1,6 +1,6 @@
 {
   "name": "react-polymer-component",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A generic React.Component for wrapping Polymer Elements and binding events and property data between them",
   "main": "PolymerComponent.js",
   "scripts": {
