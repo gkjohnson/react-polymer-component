@@ -13,7 +13,7 @@ Polymer elements can be wrapped and used in two ways and used just like any othe
 const React = require('react')
 
 // Generic class for wrapping a Polymer element
-const PolymerComponent = require('@gkjohnson/react-polymer-component')
+const PolymerComponent = require('react-polymer-component')
 
 // Get a class that specifically wraps the element 'my-polymer-element'
 const MyPolymerElement = PolymerComponent.bind('my-polymer-element')
