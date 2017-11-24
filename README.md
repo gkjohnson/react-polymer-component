@@ -42,7 +42,7 @@ Data is bound like all other React properties and set on the Polymer element usi
 
 ### Event Handling
 
-Event binding using the existing Polymer convention of prefixing event binding with `on-`, so events can easily be bound to from a React component.
+Events are registered using the existing Polymer convention of prefixing events with `on-`, so they can easily be bound to from a React component.
 
 ```html
 <MyPolymerElement on-my-custom-event={ e => console.log('Event Fired!', e) }></MyPolymerElement>
