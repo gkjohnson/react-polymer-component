@@ -18,7 +18,13 @@
     "html",
     "web",
     "vdom",
-    "webcomponents"
+    "webcomponents",
+    "component",
+    "polymer-element",
+    "dom",
+    "generic",
+    "customelements",
+    "custom-elements"
   ],
   "author": "Garrett Johnson <garrett.kjohnson@gmail.com",
   "license": "MIT",
