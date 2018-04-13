@@ -79,7 +79,7 @@ class PolymerComponent extends React.Component {
         const el = this.element
         const newProps = Object.assign({}, this.originalProps, props)
         for (let key in newProps) {
-            const val = props[key]
+            const val = newProps[key]
 
             // update the property value if it exists in the property object
             // only if it's changed
