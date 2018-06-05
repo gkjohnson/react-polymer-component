@@ -1,6 +1,5 @@
-const path = require('path')
-const webpack = require('webpack')
- 
+const path = require('path');
+
 module.exports = {
     entry: './scripts/App.js',
     output: {
@@ -17,4 +16,4 @@ module.exports = {
         }]
     },
     devtool: 'source-map'
-}
+};

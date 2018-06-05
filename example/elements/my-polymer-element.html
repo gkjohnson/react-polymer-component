@@ -8,7 +8,7 @@
             }
         </style>
 
-        <div id="container">        
+        <div id="container">
             <div>Slotted Content:</div>
             <div>
                 <slot></slot>
@@ -26,23 +26,36 @@
 
 <script type="text/javascript">
     class MyPolymerElement extends Polymer.Element {
-        static get is() { return 'my-polymer-element' }
 
-        static get properties() {
+        static get is () {
+
+            return 'my-polymer-element';
+
+        }
+
+        static get properties () {
+
             return {
                 items: {
                     type: Array,
                     value: () => [{ value: 1 }, { value: 2 }, { value: 4 }]
                 }
-            }
+            };
+
         }
 
-        _onClickHandler(e) {
-            this.dispatchEvent(new CustomEvent('my-event'))
+        _onClickHandler (e) {
+
+            this.dispatchEvent(new CustomEvent('my-event'));
+
         }
 
-        _attachDom(dom) { this.appendChild(dom) }
+        _attachDom (dom) {
+
+            this.appendChild(dom);
+
+        }
     }
 
-    customElements.define(MyPolymerElement.is, MyPolymerElement)
+    customElements.define(MyPolymerElement.is, MyPolymerElement);
 </script>

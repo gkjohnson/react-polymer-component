@@ -1,9 +1,11 @@
-const React = require('react')
-const PolymerComponent = require('@gkjohnson/react-polymer-component')
-const MyPolymerElement = PolymerComponent.bind('my-polymer-element')
+const React = require('react');
+const PolymerComponent = require('@gkjohnson/react-polymer-component');
+const MyPolymerElement = PolymerComponent.bind('my-polymer-element');
 
 class SubComponent extends React.Component {
-    render() {
+
+    render () {
+
         return <div>
             <h1>Basic Polymer Element</h1>
             <my-polymer-element
@@ -14,7 +16,7 @@ class SubComponent extends React.Component {
                 <div>internal content</div>
                 {this.props.props.text}
             </my-polymer-element>
-            
+
             <h1>Wrapped Polymer Element</h1>
             <MyPolymerElement
                 items={ this.props.props.items }
@@ -24,8 +26,10 @@ class SubComponent extends React.Component {
                 <div>internal content</div>
                 {this.props.props.text}
             </MyPolymerElement>
-        </div>
+        </div>;
+
     }
+
 }
 
-module.exports = SubComponent
+module.exports = SubComponent;
