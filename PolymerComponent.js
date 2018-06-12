@@ -27,12 +27,6 @@ class PolymerComponent extends React.Component {
 
     }
 
-    get childTagAttribute () {
-
-        return 'slotted-child-';
-
-    }
-
     get tag () {
 
         return this._getTag();
