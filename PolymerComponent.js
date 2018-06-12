@@ -14,11 +14,11 @@ class PolymerComponent extends React.Component {
     // Returns a version of the class that is bound
     // to a specific tag so it doesn't need to
     // be provided through the 'element-tag'
-    static bind (tag) {
+    static bind(tag) {
 
         return class extends PolymerComponent {
 
-            _getTag () {
+            _getTag() {
 
                 return tag;
 
@@ -28,19 +28,19 @@ class PolymerComponent extends React.Component {
 
     }
 
-    get tag () {
+    get tag() {
 
         return this._getTag();
 
     }
-    get element () {
+    get element() {
 
         return this.refs.element;
 
     }
 
     /* Lifecycle Functions */
-    constructor (props) {
+    constructor(props) {
 
         super(props);
 
@@ -54,7 +54,7 @@ class PolymerComponent extends React.Component {
 
     }
 
-    shouldComponentUpdate (newProps) {
+    shouldComponentUpdate(newProps) {
 
         const tag = newProps['element-tag'] || this.tag;
         const hasNewTag = tag.toLowerCase() !== this.tag.toLowerCase();
@@ -63,20 +63,20 @@ class PolymerComponent extends React.Component {
 
     }
 
-    render () {
+    render() {
 
-        return React.createElement(this.tag, { ref: 'element' });
+        return React.createElement(this.tag, { ref: 'element' }, this.props.children);
 
     }
 
-    componentDidUpdate () {
+    componentDidUpdate() {
 
         this._updateDefaults();
         this._updateElementProperties(this.props);
 
     }
 
-    componentDidMount () {
+    componentDidMount() {
 
         this._updateDefaults();
         this._updateElementProperties(this.props);
@@ -84,7 +84,7 @@ class PolymerComponent extends React.Component {
     }
 
     /* Private Functions */
-    _getTag () {
+    _getTag() {
 
         return this.props['element-tag'];
 
@@ -92,7 +92,7 @@ class PolymerComponent extends React.Component {
 
     // Prepare the polymer element and helper objects for
     // being registered to the page
-    _updateDefaults () {
+    _updateDefaults() {
 
         this.events = {};
 
@@ -103,7 +103,7 @@ class PolymerComponent extends React.Component {
 
     }
 
-    _updateElementProperties (props) {
+    _updateElementProperties(props) {
 
         const removeEvent = key => {
 
