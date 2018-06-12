@@ -27,7 +27,7 @@
     "customelements",
     "custom-elements"
   ],
-  "author": "Garrett Johnson <garrett.kjohnson@gmail.com",
+  "author": "Garrett Johnson <garrett.kjohnson@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gkjohnson/react-polymer-component/issues"
