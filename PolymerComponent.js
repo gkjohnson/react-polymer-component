@@ -60,12 +60,15 @@ class PolymerComponent extends React.Component {
         const hasNewTag = tag.toLowerCase() !== this.tag.toLowerCase();
         if (!hasNewTag) this._updateElementProperties(newProps);
         return hasNewTag;
+        // Always return true in case there are children or the children
+        // have changed. TODO: There must be a better way to accomodate this?
+        return true;
 
     }
 
     render () {
 
-        return React.createElement(this.tag, { ref: 'element' });
+        return React.createElement(this.tag, { ref: 'element' }, this.props.children);
 
     }
 
