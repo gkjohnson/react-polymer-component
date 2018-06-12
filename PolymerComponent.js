@@ -62,10 +62,10 @@ class PolymerComponent extends React.Component {
 
     shouldComponentUpdate (newProps) {
 
-        const tag = newProps['element-tag'] || this.tag;
-        const hasNewTag = tag.toLowerCase() !== this.tag.toLowerCase();
-        if (!hasNewTag) this._updateElementProperties(newProps);
-        return hasNewTag;
+        // const tag = newProps['element-tag'] || this.tag;
+        // const hasNewTag = tag.toLowerCase() !== this.tag.toLowerCase();
+        // if (!hasNewTag) this._updateElementProperties(newProps);
+
         // Always return true in case there are children or the children
         // have changed. TODO: There must be a better way to accomodate this?
         return true;
@@ -74,19 +74,7 @@ class PolymerComponent extends React.Component {
 
     render () {
 
-        const children = React.Children.map(this.props.children, child => {
-
-            if (typeof child === 'string') {
-
-                return React.createElement('span', { [this.childTagAttribute]: 'true' }, child);
-
-            }
-
-            return React.cloneElement(child, { [this.childTagAttribute]: 'true' });
-
-        });
-
-        return React.createElement(this.tag, { ref: 'element' }, children);
+        return React.createElement(this.tag, { ref: 'element' }, this.props.children);
 
     }
 
