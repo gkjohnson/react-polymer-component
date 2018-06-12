@@ -37,7 +37,7 @@
     "@polymer/polymer": "^2.1.1",
     "@webcomponents/webcomponentsjs": "^1.0.14",
     "parcel-bundler": "^1.8.1",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
   }
 }
