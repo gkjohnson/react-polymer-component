@@ -1,5 +1,4 @@
 const React = require('react');
-const ReactDOM = require('react-dom');
 
 // PolymerComponent
 // React Component for wrapping and using polymer elements
@@ -28,11 +27,18 @@ class PolymerComponent extends React.Component {
 
     }
 
+    get childTagAttribute () {
+
+        return 'slotted-child-';
+
+    }
+
     get tag () {
 
         return this._getTag();
 
     }
+
     get element () {
 
         return this.refs.element;
@@ -68,7 +74,19 @@ class PolymerComponent extends React.Component {
 
     render () {
 
-        return React.createElement(this.tag, { ref: 'element' }, this.props.children);
+        const children = React.Children.map(this.props.children, child => {
+
+            if (typeof child === 'string') {
+
+                return React.createElement('span', { [this.childTagAttribute]: 'true' }, child);
+
+            }
+
+            return React.cloneElement(child, { [this.childTagAttribute]: 'true' });
+
+        });
+
+        return React.createElement(this.tag, { ref: 'element' }, children);
 
     }
 
@@ -153,7 +171,7 @@ class PolymerComponent extends React.Component {
         let style = '';
         for (let key in newProps.style) {
 
-            style += `${key}:${newProps.style[key]};`;
+            style += `${ key }:${ newProps.style[key] };`;
 
         }
         this.element.setAttribute('style', style);
