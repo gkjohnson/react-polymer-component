@@ -54,17 +54,14 @@ class PolymerComponent extends React.Component {
 
     }
 
-    shouldComponentUpdate (newProps) {
-
-        // const tag = newProps['element-tag'] || this.tag;
-        // const hasNewTag = tag.toLowerCase() !== this.tag.toLowerCase();
-        // if (!hasNewTag) this._updateElementProperties(newProps);
-
-        // Always return true in case there are children or the children
-        // have changed. TODO: There must be a better way to accomodate this?
-        return true;
-
-    }
+    // "ShouldComponentUpdate" cannot be used here because we render children
+    // to the body of the element.
+    // shouldComponentUpdate (newProps) {
+    //     const tag = newProps['element-tag'] || this.tag;
+    //     const hasNewTag = tag.toLowerCase() !== this.tag.toLowerCase();
+    //     if (!hasNewTag) this._updateElementProperties(newProps);
+    //     return hasNewTag;
+    // }
 
     render () {
 
