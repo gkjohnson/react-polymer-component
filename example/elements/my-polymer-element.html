@@ -6,15 +6,24 @@
                 padding: 10px;
                 border-radius: 2px;
             }
+
+            .slotted {
+                padding-left: 20px;
+            }
         </style>
 
         <div id="container">
-            <div>Slotted Content:</div>
-            <div>
+            <h4>Slotted Content:</h4>
+            <div class="slotted">
                 <slot></slot>
             </div>
 
-            <div>Repeated Content:</div>
+            <h4>Named Slotted Content:</h4>
+            <div class="slotted">
+                <slot name="slot-name"></slot>
+            </div>
+
+            <h4>Repeated Content:</h4>
             <ul>
                 <template is="dom-repeat" items="[[items]]">
                     <li on-click="_onClickHandler">[[item.value]]</li>
@@ -48,12 +57,6 @@
         _onClickHandler (e) {
 
             this.dispatchEvent(new CustomEvent('my-event'));
-
-        }
-
-        _attachDom (dom) {
-
-            this.appendChild(dom);
 
         }
 

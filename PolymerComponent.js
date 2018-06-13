@@ -1,5 +1,4 @@
 const React = require('react');
-const ReactDOM = require('react-dom');
 
 // PolymerComponent
 // React Component for wrapping and using polymer elements
@@ -33,6 +32,7 @@ class PolymerComponent extends React.Component {
         return this._getTag();
 
     }
+
     get element () {
 
         return this.refs.element;
@@ -54,18 +54,18 @@ class PolymerComponent extends React.Component {
 
     }
 
-    shouldComponentUpdate (newProps) {
-
-        const tag = newProps['element-tag'] || this.tag;
-        const hasNewTag = tag.toLowerCase() !== this.tag.toLowerCase();
-        if (!hasNewTag) this._updateElementProperties(newProps);
-        return hasNewTag;
-
-    }
+    // "ShouldComponentUpdate" cannot be used here because we render children
+    // to the body of the element.
+    // shouldComponentUpdate (newProps) {
+    //     const tag = newProps['element-tag'] || this.tag;
+    //     const hasNewTag = tag.toLowerCase() !== this.tag.toLowerCase();
+    //     if (!hasNewTag) this._updateElementProperties(newProps);
+    //     return hasNewTag;
+    // }
 
     render () {
 
-        return React.createElement(this.tag, { ref: 'element' });
+        return React.createElement(this.tag, { ref: 'element' }, this.props.children);
 
     }
 
@@ -150,7 +150,7 @@ class PolymerComponent extends React.Component {
         let style = '';
         for (let key in newProps.style) {
 
-            style += `${key}:${newProps.style[key]};`;
+            style += `${ key }:${ newProps.style[key] };`;
 
         }
         this.element.setAttribute('style', style);
