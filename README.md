@@ -50,10 +50,4 @@ Events are registered using the existing Polymer convention of prefixing events 
 
 ### Styling
 
-The styles passed to the element are applied to the Polymer element directly.
-
-## Caveats
-
-### CSS Variables
-
-TODO -- Probably don't work
+The styles passed to the element are applied to the Polymer element directly. CSS variables work to the extent that they work in modern browsers.
