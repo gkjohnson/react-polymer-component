@@ -63,5 +63,5 @@ Slot elements and slotted children work as expected, including using the `slot` 
 The styles passed to the element are applied to the Polymer element directly. CSS variables work to the extent that they work in modern browsers.
 
 ```jsx
-<MyPolymerElement styles={ { '--color-variable': 'red' } }></MyPolymerElement>
+<MyPolymerElement style={ { '--color-variable': 'red' } }></MyPolymerElement>
 ```
