@@ -1,6 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const SubComponent = require('./SubComponent');
+const SubComponent = require('./SubComponent.jsx');
 
 class App extends React.Component {
 

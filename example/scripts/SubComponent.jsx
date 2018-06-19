@@ -1,3 +1,5 @@
+require('../elements/my-polymer-element.js');
+
 const React = require('react');
 const PolymerComponent = require('../../PolymerComponent.js');
 const MyPolymerElement = PolymerComponent.bind('my-polymer-element');

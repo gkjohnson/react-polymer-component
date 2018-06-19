@@ -1,10 +1,13 @@
 
+import { PolymerElement, html } from '../../node_modules/@polymer/polymer/polymer-element.js';
+import '../../node_modules/@polymer/polymer/lib/elements/dom-repeat.js';
+
 /* globals Polymer CustomEvent customElements */
-class MyPolymerElement extends Polymer.Element {
+class MyPolymerElement extends PolymerElement {
 
     static get template () {
 
-        return Polymer.html`
+        return html`
             <style>
                 #container {
                     background: #eee;

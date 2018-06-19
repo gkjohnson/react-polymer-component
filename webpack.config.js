@@ -1,19 +1,19 @@
 const path = require('path');
 
 module.exports = {
-    entry: './example/scripts/App.js',
+    entry: './example/scripts/App.jsx',
     output: {
         path: path.resolve(__dirname, 'example/build'),
         filename: 'app.bundle.js'
     },
     module: {
-        loaders: [{
-            test: /\.js$/,
+        rules: [{
+            test: /\.jsx$/,
             loader: 'babel-loader',
             query: {
-                presets: ['es2015', 'react']
-            }
-        }]
+                presets: ['react']
+            },
+        }],
     },
     devtool: 'source-map'
 };
