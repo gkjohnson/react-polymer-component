@@ -54,24 +54,26 @@ class PolymerComponent extends React.Component {
 
     }
 
-    // "ShouldComponentUpdate" cannot be used here because we render children
-    // to the body of the element.
-    // shouldComponentUpdate (newProps) {
-    //     const tag = newProps['element-tag'] || this.tag;
-    //     const hasNewTag = tag.toLowerCase() !== this.tag.toLowerCase();
-    //     if (!hasNewTag) this._updateElementProperties(newProps);
-    //     return hasNewTag;
-    // }
-
     render () {
 
         return React.createElement(this.tag, { ref: 'element' }, this.props.children);
 
     }
 
+    shouldComponentUpdate (newProps) {
+
+        // Clear out everything if the tag has changed by updating the
+        // defaults, implying we'll have a different element on render
+        const tag = newProps['element-tag'] || this.tag;
+        const hasNewTag = tag.toLowerCase() !== this.tag.toLowerCase();
+        if (hasNewTag) this._updateDefaults();
+
+        return true;
+
+    }
+
     componentDidUpdate () {
 
-        this._updateDefaults();
         this._updateElementProperties(this.props);
 
     }
@@ -114,6 +116,7 @@ class PolymerComponent extends React.Component {
 
         const el = this.element;
         const newProps = Object.assign({}, this.originalProps, props);
+
         for (let key in newProps) {
 
             const val = newProps[key];
@@ -153,6 +156,7 @@ class PolymerComponent extends React.Component {
             style += `${ key }:${ newProps.style[key] };`;
 
         }
+
         this.element.setAttribute('style', style);
 
     }

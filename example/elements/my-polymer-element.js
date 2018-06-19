@@ -9,9 +9,11 @@ class MyPolymerElement extends PolymerElement {
 
         return html`
             <style>
+                :host {
+                    display: block;
+                }
+
                 #container {
-                    background: #eee;
-                    padding: 10px;
                     border-radius: 2px;
                 }
 
@@ -21,17 +23,17 @@ class MyPolymerElement extends PolymerElement {
             </style>
 
             <div id="container">
-                <h4>Slotted Content:</h4>
+                <h5>Slotted Content:</h5>
                 <div class="slotted">
                     <slot></slot>
                 </div>
 
-                <h4>Named Slotted Content:</h4>
+                <h5>Named Slotted Content:</h5>
                 <div class="slotted">
                     <slot name="slot-name"></slot>
                 </div>
 
-                <h4>Repeated Content:</h4>
+                <h5>Repeated Content:</h5>
                 <ul>
                     <template is="dom-repeat" items="[[items]]">
                         <li on-click="_onClickHandler">[[item.value]]</li>
@@ -50,6 +52,12 @@ class MyPolymerElement extends PolymerElement {
             },
         };
 
+    }
+
+    constructor() {
+        super();
+
+        console.log("CREATED")
     }
 
     _onClickHandler (e) {

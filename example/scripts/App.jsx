@@ -1,6 +1,10 @@
+import '../../node_modules/@polymer/paper-button/paper-button.js';
+
 const React = require('react');
 const ReactDOM = require('react-dom');
 const SubComponent = require('./SubComponent.jsx');
+const PolymerComponent = require('../../PolymerComponent.js');
+const PaperButton = PolymerComponent.bind('paper-button');
 
 class App extends React.Component {
 
@@ -18,9 +22,7 @@ class App extends React.Component {
 
         for (let i = 0; i < count; i++) {
 
-            items.push({
-                value: Math.random() * 10
-            });
+            items.push({ value: Math.random() * 10 });
 
         }
 
@@ -29,10 +31,18 @@ class App extends React.Component {
     }
 
     render () {
+        window.thang = this;
 
         return <div>
             <SubComponent props={ this.state }></SubComponent>
-            <button onClick={ e => this.updateList() }>Update List</button>
+            <PaperButton
+                raised
+                style={ {
+                    color: 'white',
+                    background: '#D81B60',
+                } }
+                on-click={ e => this.updateList() }
+            >Update List</PaperButton>
         </div>;
 
     }
