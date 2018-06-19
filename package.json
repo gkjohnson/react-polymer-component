@@ -4,6 +4,7 @@
   "description": "A generic React.Component for wrapping Polymer Elements and binding events and property data between them",
   "main": "PolymerComponent.js",
   "scripts": {
+    "start": "npm run build && static-server",
     "build": "webpack"
   },
   "repository": {
