@@ -2,7 +2,7 @@
 import { PolymerElement, html } from '../../node_modules/@polymer/polymer/polymer-element.js';
 import '../../node_modules/@polymer/polymer/lib/elements/dom-repeat.js';
 
-/* globals Polymer CustomEvent customElements */
+/* globals CustomEvent customElements */
 class MyPolymerElement extends PolymerElement {
 
     static get template () {
@@ -52,12 +52,6 @@ class MyPolymerElement extends PolymerElement {
             },
         };
 
-    }
-
-    constructor() {
-        super();
-
-        console.log("CREATED")
     }
 
     _onClickHandler (e) {
