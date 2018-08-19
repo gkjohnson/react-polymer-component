@@ -13,11 +13,11 @@ class PolymerComponent extends React.Component {
     // Returns a version of the class that is bound
     // to a specific tag so it doesn't need to
     // be provided through the 'element-tag'
-    static bind (tag) {
+    static bind(tag) {
 
         return class extends PolymerComponent {
 
-            _getTag () {
+            _getTag() {
 
                 return tag;
 
@@ -27,20 +27,20 @@ class PolymerComponent extends React.Component {
 
     }
 
-    get tag () {
+    get tag() {
 
         return this._getTag();
 
     }
 
-    get element () {
+    get element() {
 
         return this.refs.element;
 
     }
 
     /* Lifecycle Functions */
-    constructor (props) {
+    constructor(props) {
 
         super(props);
 
@@ -54,13 +54,13 @@ class PolymerComponent extends React.Component {
 
     }
 
-    render () {
+    render() {
 
         return React.createElement(this.tag, { ref: 'element' }, this.props.children);
 
     }
 
-    shouldComponentUpdate (newProps) {
+    shouldComponentUpdate(newProps) {
 
         // Clear out everything if the tag has changed by updating the
         // defaults, implying we'll have a different element on render
@@ -72,13 +72,13 @@ class PolymerComponent extends React.Component {
 
     }
 
-    componentDidUpdate () {
+    componentDidUpdate() {
 
         this._updateElementProperties(this.props);
 
     }
 
-    componentDidMount () {
+    componentDidMount() {
 
         this._updateDefaults();
         this._updateElementProperties(this.props);
@@ -86,7 +86,7 @@ class PolymerComponent extends React.Component {
     }
 
     /* Private Functions */
-    _getTag () {
+    _getTag() {
 
         return this.props['element-tag'];
 
@@ -94,18 +94,18 @@ class PolymerComponent extends React.Component {
 
     // Prepare the polymer element and helper objects for
     // being registered to the page
-    _updateDefaults () {
+    _updateDefaults() {
 
         this.events = {};
 
         const cl = customElements.get(this.tag);
         const properties = cl ? cl.properties : null;
         this.originalProps = {};
-        for (let key in properties) this.originalProps[key] = this.element[key];
+        for (const key in properties) this.originalProps[key] = this.element[key];
 
     }
 
-    _updateElementProperties (props) {
+    _updateElementProperties(props) {
 
         const removeEvent = key => {
 
@@ -117,7 +117,7 @@ class PolymerComponent extends React.Component {
         const el = this.element;
         const newProps = Object.assign({}, this.originalProps, props);
 
-        for (let key in newProps) {
+        for (const key in newProps) {
 
             const val = newProps[key];
 
@@ -143,7 +143,7 @@ class PolymerComponent extends React.Component {
         }
 
         // cull events
-        for (let key in this.events) {
+        for (const key in this.events) {
 
             if (!(key in this.props)) removeEvent(key);
 
@@ -151,7 +151,7 @@ class PolymerComponent extends React.Component {
 
         // styles
         let style = '';
-        for (let key in newProps.style) {
+        for (const key in newProps.style) {
 
             style += `${ key }:${ newProps.style[key] };`;
 

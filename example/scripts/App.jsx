@@ -8,14 +8,14 @@ const PaperButton = PolymerComponent.bind('paper-button');
 
 class App extends React.Component {
 
-    constructor (props) {
+    constructor(props) {
 
         super(props);
         this.state = { items: [{ value: 100 }], text: 'hello!' };
 
     }
 
-    updateList () {
+    updateList() {
 
         const count = Math.ceil(Math.random() * 10);
         const items = [];
@@ -30,7 +30,7 @@ class App extends React.Component {
 
     }
 
-    render () {
+    render() {
         window.thang = this;
 
         return <div>
