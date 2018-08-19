@@ -114,29 +114,45 @@ class PolymerComponent extends React.Component {
 
         };
 
-        const el = this.element;
-        const newProps = Object.assign({}, this.originalProps, props);
+        const prevProps = this._prevProps;
+        this._prevProps = Object.assign({}, props);
 
-        for (const key in newProps) {
+        for (const key in prevProps) {
 
-            const val = newProps[key];
+            if (!(key in props) && key in this.originalProps) {
 
-            // update the property value if it exists in the property object
-            // only if it's changed
-            if (key in this.originalProps && el.get(key) !== val) el.set(key, val);
+                this.element.set(key, this.originalProps[key]);
+
+            }
+
+        }
+
+        for (const key in props) {
+
+            const val = props[key];
 
             // register events based on the "on-" attribute keywords
             if (/^on-/.test(key)) {
 
                 // remove the event if it's different
-                if (key in this.events && this.events[key] !== val) removeEvent(key);
+                if (key in this.events && this.events[key] !== val) {
 
-                if (!(key in this.events)) {
+                    removeEvent(key);
+
+                }
+
+                if (!(key in this.events) && typeof props[key] === 'function') {
 
                     this.events[key] = e => props[key](e);
                     this.element.addEventListener(key.replace(/^on-/, ''), this.events[key]);
 
                 }
+
+            }
+
+            if (key in this.originalProps && this.element.get(key) !== val) {
+
+                this.element.set(key, val);
 
             }
 
@@ -151,9 +167,9 @@ class PolymerComponent extends React.Component {
 
         // styles
         let style = '';
-        for (const key in newProps.style) {
+        for (const key in props.style) {
 
-            style += `${ key }:${ newProps.style[key] };`;
+            style += `${ key }:${ props.style[key] };`;
 
         }
 

@@ -49,13 +49,6 @@ class PolymerTestElement extends PolymerElement {
     get listEl() { return this.shadowRoot.querySelector('.list'); }
     get internalEl() { return this.shadowRoot.querySelector('.internal'); }
 
-    constructor() {
-
-        super();
-        console.log(this);
-
-    }
-
     updateInternalProperty(value) {
 
         this.internalProperty = value;
@@ -68,7 +61,18 @@ customElements.define('test-element', PolymerTestElement);
 
 class TestFixture extends React.Component {
 
-    get defaultState() { return { childItems: [], object: { a: 1, b: 2 }, items: [], header: 'header', style: {} }; }
+    get defaultState() {
+
+        return {
+            childItems: [],
+            object: { a: 1, b: 2 },
+            items: [],
+            header: 'header',
+            style: {},
+            customEventCallback: undefined,
+        };
+
+    }
 
     constructor(props) {
 
@@ -80,7 +84,13 @@ class TestFixture extends React.Component {
 
     render() {
 
-        return <TestElement header={ this.state.header } items={ this.state.items } object={ this.state.object } style={ this.state.style }>
+        return <TestElement
+            header={ this.state.header }
+            items={ this.state.items }
+            object={ this.state.object }
+            style={ this.state.style }
+            on-custom-event={ this.state.customEventCallback }
+        >
             { this.state.childItems.map(i => <div>child { i }</div>) }
         </TestElement>;
 

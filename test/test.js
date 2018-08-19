@@ -1,11 +1,11 @@
 /* global
-    THREE URDFLoader
-    jest
-    describe it beforeAll afterAll beforeEach afterEach expect
+    describe it beforeAll afterAll beforeEach expect
 */
 const puppeteer = require('puppeteer');
 // const pti = require('puppeteer-to-istanbul');
 const path = require('path');
+
+// TODO: Figure out how to measure code coverage with source maps / transpiled files.
 
 let browser = null, page = null;
 beforeAll(async() => {
@@ -19,7 +19,7 @@ beforeAll(async() => {
     });
     page = await browser.newPage();
 
-    await page.coverage.startJSCoverage();
+    // await page.coverage.startJSCoverage();
     await page.goto(`file:${ path.join(__dirname, './build/test-setup.html') }`);
     await page.evaluate(() => window.testEl = document.querySelector('test-element'));
 
@@ -140,14 +140,51 @@ describe('Polymer Element in React Component', () => {
 
     });
 
+    it('should register events', async() => {
+
+        // Make sure the event is registered and called
+        await page.evaluate(() => {
+
+            window.eventCallCount = 0;
+            window.fixture.setState(() => ({
+
+                customEventCallback: () => window.eventCallCount++,
+
+            }));
+
+        });
+
+        for (let i = 0; i < 10; i++) {
+
+            await page.evaluate(() => window.testEl.dispatchEvent(new CustomEvent('custom-event')));
+
+        }
+
+        expect(await page.evaluate(() => window.eventCallCount)).toEqual(10);
+
+        // Unregister the event and make sure the event doesn't get called
+        await page.evaluate(() => window.fixture.resetState());
+
+        for (let i = 0; i < 10; i++) {
+
+            await page.evaluate(() => window.testEl.dispatchEvent(new CustomEvent('custom-event')));
+
+        }
+
+        expect(await page.evaluate(() => window.eventCallCount)).toEqual(10);
+        await page.evaluate(() => delete window.eventCallCount);
+
+    });
+
 });
 
 afterAll(async() => {
 
     // const coverage = await page.coverage.stopJSCoverage();
+    // console.log(coverage.map(o => o.url))
     // const urdfLoaderCoverage = coverage.filter(o => /URDFLoader\.js$/.test(o.url));
     // pti.write(urdfLoaderCoverage);
 
-    // browser.close();
+    browser.close();
 
 });
