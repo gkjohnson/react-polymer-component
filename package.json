@@ -7,6 +7,9 @@
     "start": "npm run build && static-server",
     "build": "webpack"
   },
+  "files": [
+    "PolymerComponent.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gkjohnson/react-polymer-component.git"

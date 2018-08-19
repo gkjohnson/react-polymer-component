@@ -5,7 +5,7 @@ import '../../node_modules/@polymer/polymer/lib/elements/dom-repeat.js';
 /* globals CustomEvent customElements */
 class MyPolymerElement extends PolymerElement {
 
-    static get template () {
+    static get template() {
 
         return html`
             <style>
@@ -43,18 +43,18 @@ class MyPolymerElement extends PolymerElement {
 
     }
 
-    static get properties () {
+    static get properties() {
 
         return {
             items: {
                 type: Array,
-                value: () => [{ value: 1 }, { value: 2 }, { value: 4 }]
+                value: () => [{ value: 1 }, { value: 2 }, { value: 4 }],
             },
         };
 
     }
 
-    _onClickHandler (e) {
+    _onClickHandler(e) {
 
         this.dispatchEvent(new CustomEvent('my-event'));
 
