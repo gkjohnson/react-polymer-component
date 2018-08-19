@@ -11,7 +11,7 @@ let browser = null, page = null;
 beforeAll(async() => {
 
     browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
 
         // --no-sandbox is required to run puppeteer in Travis.
         // https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-on-travis-ci
