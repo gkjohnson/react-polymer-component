@@ -5,7 +5,8 @@
   "main": "PolymerComponent.js",
   "scripts": {
     "start": "npm run build && static-server",
-    "build": "webpack"
+    "build": "webpack",
+    "lint": "eslint *.js"
   },
   "files": [
     "PolymerComponent.js"
@@ -37,20 +38,21 @@
   },
   "homepage": "https://github.com/gkjohnson/react-polymer-component#readme",
   "devDependencies": {
+    "@polymer/paper-button": "^3.0.0-pre.19",
+    "@polymer/paper-card": "^3.0.0-pre.19",
     "@polymer/polymer": "^3.0.2",
     "@webcomponents/webcomponentsjs": "^2.0.2",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "eslint": "^5.4.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "static-server": "^2.2.1",
-    "webpack-serve": "^1.0.4",
-    "webpack-server": "^0.1.2",
-    "@polymer/paper-button": "^3.0.0-pre.19",
-    "@polymer/paper-card": "^3.0.0-pre.19",
     "webpack": "^4.12.0",
-    "webpack-cli": "^3.0.8"
+    "webpack-cli": "^3.0.8",
+    "webpack-serve": "^1.0.4",
+    "webpack-server": "^0.1.2"
   }
 }
