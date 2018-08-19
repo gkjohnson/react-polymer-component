@@ -1,8 +1,6 @@
 # react-polymer-component
 
-[
-    ![npm version](https://img.shields.io/npm/v/react-polymer-component.svg?style=flat-square)
-](https://www.npmjs.com/package/react-polymer-component)
+[![npm version](https://img.shields.io/npm/v/react-polymer-component.svg?style=flat-square)](https://www.npmjs.com/package/react-polymer-component)
 [![travis build](https://img.shields.io/travis/gkjohnson/react-polymer-component.svg?style=flat-square)](https://travis-ci.org/gkjohnson/react-polymer-component)
 [![lgtm code quality](https://img.shields.io/lgtm/grade/javascript/g/gkjohnson/react-polymer-component.svg?style=flat-square&label=code-quality)](https://lgtm.com/projects/g/gkjohnson/react-polymer-component/)
 
