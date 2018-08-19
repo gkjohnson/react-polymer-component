@@ -12,6 +12,7 @@ class App extends React.Component {
 
         super(props);
         this.state = { items: [{ value: 100 }], text: 'hello!' };
+        window.App = this;
 
     }
 
@@ -26,12 +27,11 @@ class App extends React.Component {
 
         }
 
-        this.setState({ items, text: 'text ' + Math.random() });
+        this.setState(() => ({ items, text: 'text ' + Math.random() }));
 
     }
 
     render() {
-        window.thang = this;
 
         return <div>
             <SubComponent props={ this.state }></SubComponent>

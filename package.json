@@ -6,7 +6,9 @@
   "scripts": {
     "start": "npm run build && static-server",
     "build": "parcel build example/index.html --public-url ./ --out-dir example/build --no-cache --no-source-maps --no-minify",
-    "lint": "eslint *.js"
+    "build-test": "parcel build test/test-setup.html --public-url ./ --out-dir test/build --no-source-maps --no-minify",
+    "lint": "eslint *.js",
+    "test": "npm run build-test && jest"
   },
   "files": [
     "PolymerComponent.js"
