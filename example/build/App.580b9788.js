@@ -20570,9 +20570,9 @@ class SubComponent extends React.Component {
                 React.createElement(
                     'my-polymer-element',
                     {
-                        items: this.props.props.items,
-                        'on-click': e => console.log('Polymer Click Event'),
-                        'on-my-event': e => console.log('Custom Polymer Event')
+                        items: this.props.items,
+                        'on-click': () => console.log('Polymer Click Event'),
+                        'on-my-event': () => console.log('Custom Polymer Event')
                     },
                     React.createElement(
                         'div',
@@ -20580,7 +20580,7 @@ class SubComponent extends React.Component {
                         'internal content : ',
                         Math.random()
                     ),
-                    this.props.props.text,
+                    this.props.text,
                     React.createElement(
                         'div',
                         { slot: 'slot-name' },
@@ -20599,9 +20599,9 @@ class SubComponent extends React.Component {
                 React.createElement(
                     MyPolymerElement,
                     {
-                        items: this.props.props.items,
-                        'on-click': e => console.log('Polymer Click Event'),
-                        'on-my-event': e => console.log('Custom Polymer Event')
+                        items: this.props.items,
+                        'on-click': () => console.log('Polymer Click Event'),
+                        'on-my-event': () => console.log('Custom Polymer Event')
                     },
                     React.createElement(
                         'div',
@@ -20609,7 +20609,7 @@ class SubComponent extends React.Component {
                         'internal content : ',
                         Math.random()
                     ),
-                    this.props.props.text,
+                    this.props.text,
                     React.createElement(
                         'div',
                         { slot: 'slot-name' },
@@ -20661,7 +20661,7 @@ class App extends React.Component {
         return React.createElement(
             'div',
             null,
-            React.createElement(SubComponent, { props: this.state }),
+            React.createElement(SubComponent, { items: this.state.items, text: this.state.text }),
             React.createElement(
                 PaperButton,
                 {

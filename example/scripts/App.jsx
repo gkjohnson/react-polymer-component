@@ -34,7 +34,7 @@ class App extends React.Component {
     render() {
 
         return <div>
-            <SubComponent props={ this.state }></SubComponent>
+            <SubComponent items={ this.state.items } text={ this.state.text }></SubComponent>
             <PaperButton
                 raised
                 style={ {
