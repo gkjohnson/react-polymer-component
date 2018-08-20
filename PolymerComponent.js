@@ -117,6 +117,7 @@ class PolymerComponent extends React.Component {
         const prevProps = this._prevProps;
         this._prevProps = Object.assign({}, props);
 
+        // reset any properties that have been removed to their original value
         for (const key in prevProps) {
 
             if (!(key in props) && key in this.originalProps) {
