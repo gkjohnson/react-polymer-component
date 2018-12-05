@@ -101,12 +101,14 @@ class PolymerComponent extends React.Component {
         const cl = customElements.get(this.tag);
         const properties = cl ? cl.properties : null;
         this.originalProps = {};
-        this._updateOriginalProperties(properties);
+
+        // add behavior properties first
         if (this.element.behaviors) {
-            for (const behavior of this.element.behaviors) {
+            this.element.behaviors.forEach(behavior => {
                 this._updateOriginalProperties(behavior.properties);
-            }
+            });
         }
+        this._updateOriginalProperties(properties);
     }
 
     _updateOriginalProperties(properties) {
@@ -176,7 +178,7 @@ class PolymerComponent extends React.Component {
 
         // classes
         if (props.className) {
-            this.element.setAttribute('class', props.className);
+            this.element.setAttribute('class', props.className || '');
         }
 
         // styles

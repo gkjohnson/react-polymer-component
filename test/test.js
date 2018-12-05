@@ -108,6 +108,24 @@ describe('Polymer Element in React Component', () => {
 
     });
 
+    it('should use classes', async() => {
+
+        await page.evaluate(() => window.fixture.setState(() => ({
+
+            className: 'red',
+
+        })));
+
+        const className = await page.evaluate(() => {
+
+            return window.testEl.getAttribute('class');
+
+        });
+
+        expect(className).toEqual('red');
+
+    });
+
     it('should insert children properly', async() => {
 
         await page.evaluate(() => window.fixture.setState(() => ({

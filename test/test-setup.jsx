@@ -70,6 +70,7 @@ class TestFixture extends React.Component {
             header: 'header',
             style: {},
             customEventCallback: undefined,
+            className: undefined,
         };
 
     }
@@ -90,6 +91,7 @@ class TestFixture extends React.Component {
             object={ this.state.object }
             style={ this.state.style }
             on-custom-event={ this.state.customEventCallback }
+            className= { this.state.className }
         >
             { this.state.childItems.map(i => <div>child { i }</div>) }
         </TestElement>;
