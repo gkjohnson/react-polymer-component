@@ -115,6 +115,19 @@ describe('Polymer Element in React Component', () => {
     });
 
 
+    it('should not include class attribute if className is undefined', async() => {
+
+        await page.evaluate(() => window.fixture.setState(() => ({
+
+            className: undefined,
+
+        })));
+
+        expect(await page.evaluate(() => window.testEl.hasAttribute('class'))).toEqual(false);
+
+    });
+
+
     it('should use classes', async() => {
 
         await page.evaluate(() => window.fixture.setState(() => ({
