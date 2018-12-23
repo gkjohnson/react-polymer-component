@@ -177,7 +177,11 @@ class PolymerComponent extends React.Component {
         }
 
         // classes
-        this.element.setAttribute('class', props.className || '');
+        if (props.className) {
+            this.element.setAttribute('class', props.className);
+        } else {
+            this.element.removeAttribute('class');
+        }
 
         // styles
         let style = '';
