@@ -1,4 +1,5 @@
 import { PolymerElement, html } from '../node_modules/@polymer/polymer/polymer-element.js';
+import { mixinBehaviors } from '../node_modules/@polymer/polymer/lib/legacy/class.js';
 import '../node_modules/@polymer/polymer/lib/elements/dom-repeat.js';
 
 const React = require('react');
@@ -6,7 +7,21 @@ const ReactDOM = require('react-dom');
 const PolymerComponent = require('../PolymerComponent.js');
 const TestElement = PolymerComponent.bind('test-element');
 
-class PolymerTestElement extends PolymerElement {
+/** @polymerBehavior */
+const CustomBehaviorImlp = {
+    properties: {
+        internalProperty: {
+            type: Number,
+            value: 1,
+        },
+        behaviorProperty: {
+            type: String,
+            value: 'behaviorPropertyTest',
+        },
+    },
+};
+
+class PolymerTestElement extends mixinBehaviors(CustomBehaviorImlp, PolymerElement) {
 
     static get properties() {
         return {
@@ -70,6 +85,7 @@ class TestFixture extends React.Component {
             header: 'header',
             style: {},
             customEventCallback: undefined,
+            className: undefined,
         };
 
     }
@@ -90,6 +106,7 @@ class TestFixture extends React.Component {
             object={ this.state.object }
             style={ this.state.style }
             on-custom-event={ this.state.customEventCallback }
+            className= { this.state.className }
         >
             { this.state.childItems.map(i => <div>child { i }</div>) }
         </TestElement>;

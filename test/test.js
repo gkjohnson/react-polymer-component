@@ -108,6 +108,46 @@ describe('Polymer Element in React Component', () => {
 
     });
 
+    it('should not include class attribute', async() => {
+
+        expect(await page.evaluate(() => window.testEl.hasAttribute('class'))).toEqual(false);
+
+    });
+
+
+    it('should not include class attribute if className is undefined', async() => {
+
+        await page.evaluate(() => window.fixture.setState(() => ({
+
+            className: undefined,
+
+        })));
+
+        expect(await page.evaluate(() => window.testEl.hasAttribute('class'))).toEqual(false);
+
+    });
+
+
+    it('should use classes', async() => {
+
+        await page.evaluate(() => window.fixture.setState(() => ({
+
+            className: 'red',
+
+        })));
+
+        expect(await page.evaluate(() => window.testEl.hasAttribute('class'))).toEqual(true);
+
+        const className = await page.evaluate(() => {
+
+            return window.testEl.getAttribute('class');
+
+        });
+
+        expect(className).toEqual('red');
+
+    });
+
     it('should insert children properly', async() => {
 
         await page.evaluate(() => window.fixture.setState(() => ({
@@ -128,6 +168,12 @@ describe('Polymer Element in React Component', () => {
 
     });
 
+    it('should return default property value', async() => {
+
+        expect(await page.evaluate(() => window.testEl.internalProperty)).toEqual(0);
+
+    });
+
     it('should not overwrite internally changed properties', async() => {
 
         await page.evaluate(() => window.testEl.updateInternalProperty(100));
@@ -137,6 +183,12 @@ describe('Polymer Element in React Component', () => {
         await page.evaluate(() => window.fixture.resetState());
         expect(await page.evaluate(() => window.testEl.internalProperty)).toEqual(100);
         expect(await page.evaluate(() => window.testEl.internalEl.innerText)).toEqual('100');
+
+    });
+
+    it('should return behavior property value', async() => {
+
+        expect(await page.evaluate(() => window.testEl.behaviorProperty)).toEqual('behaviorPropertyTest');
 
     });
 
