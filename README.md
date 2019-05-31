@@ -1,3 +1,7 @@
+# This package is deprecated
+
+This project represents an experiment in simplifying the use of Polymer Elements with React Components but is not intended to for use in a production environment and no longer maintained. 
+
 # react-polymer-component
 
 [![npm version](https://img.shields.io/npm/v/react-polymer-component.svg?style=flat-square)](https://www.npmjs.com/package/react-polymer-component)
