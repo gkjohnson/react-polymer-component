@@ -1,6 +1,6 @@
 # This package is deprecated
 
-This project represents an experiment in simplifying the use of Polymer Elements with React Components but is not intended to for use in a production environment and no longer maintained. 
+This project represents an experiment to simplify the use of Polymer Elements with React Components but is not intended to for use in a production environment and no longer maintained.
 
 # react-polymer-component
 
